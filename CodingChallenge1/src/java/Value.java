@@ -1,10 +1,13 @@
 import java.sql.Array;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Value {
     /*
     * For now, why dont we just assume values less than one hundred?
     * If that works, THEN we can worry about handling values 100 - 999
+    *
+    * APPARENTLY
     */
 
 
@@ -41,24 +44,31 @@ public class Value {
         numbers.put("eighty",80);
         numbers.put("ninety",90);
         numbers.put("hundred",100);
-        numbers.put("and", 0);
+        numbers.put("and",0);
     }
 
 
     public Value(String name){
         this.name = name;
-        String[] tmp = name.split("[\\s-]");
-
-        if(tmp.length == 1) {
-            value = numbers.get(tmp[0].toLowerCase());
+        List<String> words = new ArrayList<String> (List.of(name.split("[\\s-]")));
+        for(String word : words){
+            words.set(words.indexOf(word), word.toLowerCase());
         }
-        if(tmp.length == 2) {
-            if(tmp[1].equalsIgnoreCase("hundred"))
-                value = numbers.get(tmp[0].toLowerCase()) * numbers.get(tmp[1].toLowerCase());
-            else{
-                value = numbers.get(tmp[0].toLowerCase()) + numbers.get(tmp[1].toLowerCase());
+        //System.out.println(words);
+        if(words.contains("hundred")){
+            value += numbers.get(words.get(0))*numbers.get(words.get(1));
+            if(words.size() > 2){
+                for (int i = 2; i < words.size(); i++){
+                    value += numbers.get(words.get(i));
+                }
             }
         }
+        else{
+            for(String word : words){
+                value += numbers.get(word);
+            }
+        }
+        //System.out.println(words);
     }
 
     public int getValue() {
@@ -69,13 +79,13 @@ public class Value {
         return name;
     }
 
-    //*
+    /*
     public static void main(String[] args) {
         Value test20 = new Value("Twenty-Five");
         System.out.println(test20.getName());
         System.out.println(test20.getValue());
 
-        Value test200 = new Value("Two Hundred");
+        Value test200 = new Value("Nine Hundred Ninety-Nine");
         System.out.println(test200.getName());
         System.out.println(test200.getValue());
     }
