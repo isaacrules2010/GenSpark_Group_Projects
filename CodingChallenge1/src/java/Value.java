@@ -1,6 +1,5 @@
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Value {
     /*
@@ -11,12 +10,54 @@ public class Value {
 
     private int value;
     private String name;
+    private static final Map<String,Integer> numbers = new HashMap<>();
+    static {
+        numbers.put("one",1);
+        numbers.put("two",2);
+        numbers.put("three",3);
+        numbers.put("four",4);
+        numbers.put("five",5);
+        numbers.put("six",6);
+        numbers.put("seven",7);
+        numbers.put("eight",8);
+        numbers.put("nine",9);
+        numbers.put("ten",10);
+        numbers.put("eleven",11);
+        numbers.put("twelve",12);
+        numbers.put("thirteen",13);
+        numbers.put("fourteen",14);
+        numbers.put("fifteen",15);
+        numbers.put("sixteen",16);
+        numbers.put("seventeen",17);
+        numbers.put("eighteen",18);
+        numbers.put("nineteen",19);
+        numbers.put("twenty",20);
+        numbers.put("thirty",30);
+        numbers.put("forty",40);
+        numbers.put("fifty",50);
+        numbers.put("sixty",60);
+        numbers.put("seventy",70);
+        numbers.put("eighty",80);
+        numbers.put("ninety",90);
+        numbers.put("hundred",100);
+        numbers.put("and", 0);
+    }
 
-    List<String> ones = new ArrayList<String>(List.of("Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"));
-    List<String> tens = new ArrayList<String>(List.of("", "", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"));
 
     public Value(String name){
-        // value = tens.indexOf + ones.indexOf
+        this.name = name;
+        String[] tmp = name.split("[\\s-]");
+
+        if(tmp.length == 1) {
+            value = numbers.get(tmp[0].toLowerCase());
+        }
+        if(tmp.length == 2) {
+            if(tmp[1].equalsIgnoreCase("hundred"))
+                value = numbers.get(tmp[0].toLowerCase()) * numbers.get(tmp[1].toLowerCase());
+            else{
+                value = numbers.get(tmp[0].toLowerCase()) + numbers.get(tmp[1].toLowerCase());
+            }
+        }
     }
 
     public int getValue() {
@@ -26,4 +67,16 @@ public class Value {
     public String getName() {
         return name;
     }
+
+    //*
+    public static void main(String[] args) {
+        Value test20 = new Value("Twenty-Five");
+        System.out.println(test20.getName());
+        System.out.println(test20.getValue());
+
+        Value test200 = new Value("Two Hundred");
+        System.out.println(test200.getName());
+        System.out.println(test200.getValue());
+    }
+    //*/
 }
