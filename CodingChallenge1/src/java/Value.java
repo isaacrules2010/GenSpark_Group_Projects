@@ -8,6 +8,7 @@ public class Value {
     */
 
 
+
     private int value;
     private String name;
     private static final Map<String,Integer> numbers = new HashMap<>();
