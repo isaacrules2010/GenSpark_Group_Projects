@@ -44,12 +44,5 @@ public class Read {
     public void setList(ArrayList<Value> list) {
         this.list = list;
     }
-
-    public static void main(String[] args) {
-        Read read = new Read();
-        for (Value v: read.getList()){
-            System.out.println(v.getName());
-        }
-    }
 }
 
