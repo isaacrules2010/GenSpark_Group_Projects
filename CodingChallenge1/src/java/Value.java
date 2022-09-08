@@ -50,11 +50,17 @@ public class Value {
 
     public Value(String name){
         this.name = name;
+        // splits the string using spaces and hyphens.
+        // "one hundred and twenty-three" becomes [one, hundred, and, twenty, three]
         List<String> words = new ArrayList<String> (List.of(name.split("[\\s-]")));
+
+        //converts all to lowercase, just for processing and assigning values
         for(String word : words){
             words.set(words.indexOf(word), word.toLowerCase());
         }
-        //System.out.println(words);
+
+        // if the input is larger than 99, essentially.
+        // handles "one hundred" thru "nine hundred ninety-nine"
         if(words.contains("hundred")){
             value += numbers.get(words.get(0))*numbers.get(words.get(1));
             if(words.size() > 2){
@@ -63,31 +69,22 @@ public class Value {
                 }
             }
         }
+        // anything less than one hundred should be handled here
+        // "and" has a value of zero, so, if its included, it should not affect output value
         else{
             for(String word : words){
                 value += numbers.get(word);
             }
         }
-        //System.out.println(words);
     }
 
+    // gets the value of the object. returns int;
     public int getValue() {
         return value;
     }
 
+    // gets the name of the object. returns String;
     public String getName() {
         return name;
     }
-
-    /*
-    public static void main(String[] args) {
-        Value test20 = new Value("Twenty-Five");
-        System.out.println(test20.getName());
-        System.out.println(test20.getValue());
-
-        Value test200 = new Value("Nine Hundred Ninety-Nine");
-        System.out.println(test200.getName());
-        System.out.println(test200.getValue());
-    }
-    //*/
 }
