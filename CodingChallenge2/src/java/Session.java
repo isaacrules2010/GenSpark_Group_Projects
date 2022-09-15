@@ -13,6 +13,7 @@ public class Session {
         setSession(session);
     }
 
+
     public void setSession(String session){ //sets session.title and session.length based on String (read from file)
         //should be length of 2
         String[] tmp = session.split("\\s\\s\\s\\s|\\t", 2);
@@ -25,6 +26,9 @@ public class Session {
             // essentially, as long as numbers come FIRST in time declaration
             length = Integer.parseInt(tmp[1].split("[A-Za-z\\s]")[0]);
         }
+    }
+    public String lengthString(){
+        return String.format("%dmin, this.length");
     }
 
     public Time getTime() {
