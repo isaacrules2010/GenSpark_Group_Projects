@@ -70,4 +70,12 @@ public class Time {
             hh-=24;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Time{" +
+                "hh=" + hh +
+                ", mm=" + mm +
+                '}';
+    }
 }
