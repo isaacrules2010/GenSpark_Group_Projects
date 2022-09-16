@@ -40,9 +40,10 @@ public class Time {
         String ampm = "";
         int hours = this.hh;
         if(this.hh >= 12 && hours <= 24){
-            if(hours!=24)
+            if(hours>=12)
                 ampm = "PM";
-            hours-=12;
+            else if (hours<12)
+                hours-=12;
         }
         else if(hours == 24 || hours < 12){
             if(hours == 0)

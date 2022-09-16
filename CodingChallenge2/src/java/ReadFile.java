@@ -139,17 +139,24 @@ public class ReadFile {
             currentSessions.addAll(afterLunch(sessions));
             sessions.removeAll(currentSessions);
 
-            //Adds in the day
+            //Adds in the track
             result.add(currentSessions);
 
         }
 
-        //output
-        for (List<Session> day: result){
-            for(Session s: day){
-                System.out.println(s.getTime() + " " + s);
+
+        //output Using Timeslot class
+        ArrayList<ArrayList<Timeslot>> tracks = new ArrayList<>();
+        for (List<Session> track: result){
+            ArrayList<Timeslot> sessionList = new ArrayList<>();
+            for (Session s : track){
+                sessionList.add(new Timeslot(s.getTime(),s));
             }
-            System.out.println("\n\n");
+            tracks.add(sessionList);
         }
+
+        Display display = new Display();
+        display.setTracks(tracks);
+        display.display();
     }
 }

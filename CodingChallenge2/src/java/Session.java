@@ -28,7 +28,7 @@ public class Session {
         }
     }
     public String lengthString(){
-        return String.format("%dmin, this.length");
+        return String.format("%dmin",this.length);
     }
 
     public Time getTime() {
