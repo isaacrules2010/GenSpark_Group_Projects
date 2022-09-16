@@ -7,22 +7,6 @@ import java.util.stream.Stream;
 public class ReadFile {
     private ArrayList<Session> sessions;
 
-    private static Comparator<Session> comparator = new Comparator<Session>() {
-        @Override
-        public int compare(Session s1, Session s2) {
-            if(s1.getTime().getHours()> s2.getTime().getHours()){
-                return 1;
-            } else if (s2.getTime().getHours()>s1.getTime().getHours()) {
-                return -1;
-            } else if (s1.getTime().getMinutes()>s2.getTime().getMinutes()) {
-                return 1;
-            } else if (s2.getTime().getMinutes()>s1.getTime().getMinutes()) {
-                return -1;
-            }
-            return 0;
-        }
-    };
-
     public void readMyFile(){
         try {
             Stream<String> lines = Files.lines(Path.of("src/resources/JavaConference2020.txt"));
@@ -46,34 +30,43 @@ public class ReadFile {
         this.sessions = sessions;
     }
 
+    //Takes the first index and puts it to the tail of the list
     public static void cycle(List<Session> sessions){
         Session s = sessions.get(0);
         sessions.remove(0);
         sessions.add(sessions.size()-1,s);
     }
 
+    //Returns the length given the hours and minutes
     public static int length(int hours, int minutes){
         return 60*hours+minutes;
     }
 
+    //Adds sessions in before lunch and returns a list of sessions
     public static List<Session> beforeLunch(List<Session> sessions){
         List<Session> result = new ArrayList<>();
+        //Start time is 9
         LocalTime beforeLunch = LocalTime.of(9,0);
 
+        //Lunch hour
         Session lunch = new Session();
         lunch.setTitle("lunch");
         lunch.setLength(60);
 
         while (true){
             for (Session s: sessions){
+                //Calculate the remaining time
                 int currentLength = length(beforeLunch.getHour(),beforeLunch.getMinute());
                 int totalLength = length(12,0) - currentLength;
+
+                //Checks to see if there is time to add in session
                 if (totalLength>=s.getLength()){
                     s.setTime(new Time(beforeLunch.getHour(),beforeLunch.getMinute()));
                     result.add(s);
                     beforeLunch = beforeLunch.plusMinutes(s.getLength());
                 }
             }
+            //If time is equal to noon break else cycle and start over
             if (length(beforeLunch.getHour(),beforeLunch.getMinute())==length(12,0)){
                 break;
             }else {
@@ -82,29 +75,36 @@ public class ReadFile {
                 result.clear();
             }
         }
+        //Adds lunch and then returns result
         lunch.setTime(new Time(beforeLunch.getHour(),beforeLunch.getMinute()));
         result.add(lunch);
         return result;
     }
 
+    //Adds sessions in after lunch and returns a list of sessions
     public static List<Session> afterLunch(List<Session> sessions){
         List<Session> result = new ArrayList<>();
+        //afternoon sessions start at 1
         LocalTime afterLunch = LocalTime.of(13,0);
 
+        //Networking Event
         Session networking= new Session();
         networking.setTitle("Networking Event");
-        networking.setLength(60);
 
         while (true){
             for (Session s: sessions){
+                //Calculate the remaining time
                 int currentLength = length(afterLunch.getHour(),afterLunch.getMinute());
                 int totalLength = length(17,0) - currentLength;
+
+                //Checks to see if there is time to add in session
                 if (totalLength>=s.getLength()){
                     s.setTime(new Time(afterLunch.getHour(),afterLunch.getMinute()));
                     result.add(s);
                     afterLunch = afterLunch.plusMinutes(s.getLength());
                 }
             }
+            //If the time is between 4-5 o clock break else cycle and start over
             if (length(afterLunch.getHour(),afterLunch.getMinute())==length(17,0)){
                 break;
             } else if (length(afterLunch.getHour(),afterLunch.getMinute())>=length(16,0)) {
@@ -115,6 +115,7 @@ public class ReadFile {
                 result.clear();
             }
         }
+        //Add networking event and return the result
         networking.setTime(new Time(afterLunch.getHour(),afterLunch.getMinute()));
         result.add(networking);
         return result;
@@ -130,22 +131,24 @@ public class ReadFile {
         while (!sessions.isEmpty()){
             List<Session> currentSessions = new ArrayList<>();
 
+            //Before lunch
             currentSessions.addAll(beforeLunch(sessions));
             sessions.removeAll(currentSessions);
 
+            //After lunch
             currentSessions.addAll(afterLunch(sessions));
             sessions.removeAll(currentSessions);
 
+            //Adds in the day
             result.add(currentSessions);
 
         }
-        
+
+        //output
         for (List<Session> day: result){
-            day.sort(comparator);
             for(Session s: day){
                 System.out.println(s.getTime() + " " + s);
             }
-            System.out.println(day.size());
             System.out.println("\n\n");
         }
     }
