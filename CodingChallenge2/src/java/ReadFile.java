@@ -34,7 +34,7 @@ public class ReadFile {
     public static void cycle(List<Session> sessions){
         Session s = sessions.get(0);
         sessions.remove(0);
-        sessions.add(sessions.size()-1,s);
+        sessions.add(s);
     }
 
     //Returns the length given the hours and minutes
