@@ -5,7 +5,7 @@ import NewUser from "./RoutingPages/NewUser";
 import { Route, Routes } from "react-router-dom";
 //npm install react-router-dom
 //npm install npm
-//npm install bootstrap 
+//npm install bootstrap
 
 function App() {
   return (
