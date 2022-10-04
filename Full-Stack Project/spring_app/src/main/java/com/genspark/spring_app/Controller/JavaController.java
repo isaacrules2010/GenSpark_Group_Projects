@@ -1,12 +1,7 @@
 package com.genspark.spring_app.Controller;
-
-import com.genspark.spring_app.Entity.MyUserDetails;
 import com.genspark.spring_app.Entity.User;
 import com.genspark.spring_app.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
