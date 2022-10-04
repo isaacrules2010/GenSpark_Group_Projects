@@ -3,6 +3,7 @@ import com.genspark.spring_app.Entity.MyUserDetails;
 import com.genspark.spring_app.Entity.User;
 import com.genspark.spring_app.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,25 +26,16 @@ public class JavaConfig {
     @Autowired
     MyUserDetailsService myUserDetailsService;
 
-
-    @Bean
-    public UserDetailsService userDetailsManager() throws Exception {
-
-        List<UserDetails> userDetails = new ArrayList<>();
-        for (User user : myUserDetailsService.findAllUsers()) {
-            userDetails.add(new MyUserDetails(user));
-        }
-        return new InMemoryUserDetailsManager(userDetails);
-    }
-
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf().disable()
                 .authorizeRequests(auth -> {
+                    auth.antMatchers("/users").permitAll();
                     auth.antMatchers("/user").hasRole("USER");
                     auth.antMatchers("/admin").hasRole("ADMIN");
                 })
+                .userDetailsService(myUserDetailsService)
                 .httpBasic()
                 .and()
                 .logout(LogoutConfigurer::permitAll)

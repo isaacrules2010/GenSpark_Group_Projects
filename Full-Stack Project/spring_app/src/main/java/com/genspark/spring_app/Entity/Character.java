@@ -1,10 +1,9 @@
 package com.genspark.spring_app.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="tbl_character")
 public class Character {
     @Id
     @Column(name = "char_id")

@@ -1,7 +1,10 @@
 package com.genspark.spring_app.Service;
 import com.genspark.spring_app.Dao.UserDao;
+import com.genspark.spring_app.Entity.MyUserDetails;
 import com.genspark.spring_app.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -53,8 +56,16 @@ public class MyUserDetailsServiceImp implements MyUserDetailsService {
         return "User Deleted by Id: " + userId;
     }
 
+
     @Override
     public PasswordEncoder getEncoder() {
         return this.passwordEncoder;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        return userDao.findByUsername(userName)
+                .map(MyUserDetails::new)
+                .orElseThrow(()->new UsernameNotFoundException("Username not found: " + userName));
     }
 }

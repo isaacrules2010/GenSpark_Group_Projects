@@ -14,16 +14,15 @@ import javax.persistence.*;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        private String userName;
+        private String username;
         private String password;
 
         private String email;
         private boolean active;
         private String roles;
 
-        public User(int id, String userName, String password, String email, boolean active, String roles) {
-            this.id = id;
-            this.userName = userName;
+        public User(String username, String password, String email, boolean active, String roles) {
+            this.username = username;
             this.password = password;
             this.email = email;
             this.active = active;
@@ -41,20 +40,12 @@ import javax.persistence.*;
             this.id = id;
         }
 
-        public String getUserName() {
-            return userName;
+        public String getUsername() {
+            return username;
         }
 
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public void setUserName(String userName) {
-            this.userName = userName;
+        public void setUsername(String username) {
+            this.username = username;
         }
 
         public String getPassword() {
@@ -63,6 +54,14 @@ import javax.persistence.*;
 
         public void setPassword(String password) {
             this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
 
         public boolean isActive() {

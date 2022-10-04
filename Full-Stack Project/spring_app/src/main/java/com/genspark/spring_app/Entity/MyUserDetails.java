@@ -14,15 +14,12 @@ import java.util.stream.Collectors;
 
         private String userName;
         private String password;
-
-        private String email;
         private boolean active;
         private List<GrantedAuthority> authorityList;
 
         public MyUserDetails(User user){
-            this.userName = user.getUserName();
+            this.userName = user.getUsername();
             this.password = user.getPassword();
-            this.email = user.getEmail();
             this.active = user.isActive();
             this.authorityList = Arrays.stream(user.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
         }
@@ -30,9 +27,6 @@ import java.util.stream.Collectors;
         public MyUserDetails() {
         }
 
-        public String getEmail() {
-            return email;
-        }
 
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
