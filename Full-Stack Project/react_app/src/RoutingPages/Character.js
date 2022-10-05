@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Nav from '../Componets/Nav'
+import Nav from '../Components/Nav'
 import { useParams } from 'react-router-dom';
 import Service from '../Services/Service';
 import '../App.css';
@@ -32,9 +32,12 @@ const Character = () => {
                 <span id='charName'>
                     Name: {char.name}
                 </span>
+                |||||
                 <span id='charUser'>
                     Created By: {char.user}
                 </span>
+                |||||
+                <span id='charClass'> Class: {char.characterClass}</span>
             </div>
             <div className='statDisplay'>
                 <h3>STR</h3>
