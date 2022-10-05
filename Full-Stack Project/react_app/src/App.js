@@ -3,12 +3,17 @@ import Login from "./RoutingPages/Login";
 import Logout from "./RoutingPages/Logout";
 import NewUser from "./RoutingPages/NewUser";
 import { Route, Routes } from "react-router-dom";
+import CharacterList from "./RoutingPages/CharacterList";
+import Character from "./RoutingPages/Character";
+
 //npm install react-router-dom
 //npm install npm
 //npm install bootstrap
+//npm install react-validation
+//npm install validate
+//npm install axios
 
 function App() {
-  const [jwt,setJwt] = useState("","jwt");
 
   return (
         <Routes>

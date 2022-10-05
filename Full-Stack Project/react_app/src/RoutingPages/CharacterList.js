@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Nav from '../Componets/Nav';
+import Nav from '../Components/Nav';
 import Service from '../Services/Service';
 
 const baseUrl = "http://localhost:3000/";

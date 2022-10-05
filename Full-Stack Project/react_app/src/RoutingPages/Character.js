@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../Componets/Nav'
+import Nav from '../Components/Nav'
 
 function Character() {
   return (
