@@ -23,7 +23,7 @@ public class CharacterServiceImpl implements CharacterService{
     }
 
     @Override
-    public PlayerCharacter addCharacter(Character character) {
+    public PlayerCharacter addCharacter(PlayerCharacter character) {
         return null;
     }
 }

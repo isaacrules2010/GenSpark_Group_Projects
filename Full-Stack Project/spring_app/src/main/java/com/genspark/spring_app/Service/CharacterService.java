@@ -7,5 +7,5 @@ import java.util.List;
 public interface CharacterService{
     List<PlayerCharacter> getAllCharacters();
     PlayerCharacter getCharacterById(int id);
-    PlayerCharacter addCharacter(Character character);
+    PlayerCharacter addCharacter(PlayerCharacter character);
 }

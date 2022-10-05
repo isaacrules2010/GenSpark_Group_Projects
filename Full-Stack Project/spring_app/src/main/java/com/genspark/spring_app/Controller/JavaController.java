@@ -81,4 +81,9 @@ public class JavaController {
     public List<PlayerCharacter> getAllCharacters(){
         return characterService.getAllCharacters();
     }
+
+    @PostMapping
+    public PlayerCharacter addCharacter(@RequestBody PlayerCharacter character){
+        return characterService.addCharacter(character);
+    }
 }
