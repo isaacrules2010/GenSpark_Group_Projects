@@ -1,5 +1,7 @@
 package com.genspark.spring_app.Controller;
+import com.genspark.spring_app.Entity.PlayerCharacter;
 import com.genspark.spring_app.Entity.User;
+import com.genspark.spring_app.Service.CharacterService;
 import com.genspark.spring_app.Service.MyUserDetailsService;
 import com.genspark.spring_app.Service.TokenService;
 
@@ -18,6 +20,9 @@ public class JavaController {
     private static final Logger LOG = LoggerFactory.getLogger(JavaController.class);
     @Autowired
     MyUserDetailsService userDetailsService;
+
+    @Autowired
+    CharacterService characterService;
 
     @Autowired
     TokenService tokenService;
@@ -70,5 +75,10 @@ public class JavaController {
     @DeleteMapping("/users/{userID}")
     public String deleteUser(@PathVariable String userID){
         return this.userDetailsService.deleteUser(Integer.parseInt(userID));
+    }
+
+    @GetMapping("/characters")
+    public List<PlayerCharacter> getAllCharacters(){
+        return characterService.getAllCharacters();
     }
 }

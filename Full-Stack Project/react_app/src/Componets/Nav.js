@@ -23,15 +23,15 @@ export default function Nav() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a href={baseUrl} className="nav-link">
+                        <a href={baseUrl + "characters"} className="nav-link">
                             Character List
                         </a>
                     </li>
-                    <li className="nav-item">
-                        <a href={baseUrl} className="nav-link">
+                    {/* <li className="nav-item">
+                        <a href={baseUrl + "characters/character"} className="nav-link">
                             Character Display
                         </a>
-                    </li>
+                    </li> */}
                     <li className="nav-item dropdown">
                         <div className="nav-link 
                         dropdown-toggle" id="navbarDropDown" role="button" data-bs-toggle="dropdown"

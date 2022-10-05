@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.dropdown-item{
+  background-color: white;
+  transition: 0.4s;
+}
+
+.dropdown-item:hover{
+  font-weight: bold;
+}

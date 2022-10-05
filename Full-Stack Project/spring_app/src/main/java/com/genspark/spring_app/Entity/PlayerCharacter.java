@@ -4,10 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_character")
-public class Character {
+public class PlayerCharacter {
     @Id
     @Column(name = "char_id")
     private int id;
+    private String user;
     private String name;
     @Column(name = "class")
     private String characterClass;
@@ -22,7 +23,28 @@ public class Character {
 
 
     //default constructor
-    public Character() {
+    public PlayerCharacter() {
+    }
+
+    public PlayerCharacter(String user, String name, String charClass) {
+        this.user = user;
+        this.name = name;
+        this.characterClass = charClass;
+
+        strength = 10;
+        constitution = 10;
+        dexterity = 10;
+        wisdom = 10;
+        intelligence = 10;
+        charisma = 10;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String USER) {
+        this.user = USER;
     }
 
     public int getId() {
