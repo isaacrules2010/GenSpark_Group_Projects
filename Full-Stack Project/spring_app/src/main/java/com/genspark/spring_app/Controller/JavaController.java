@@ -36,10 +36,14 @@ public class JavaController {
         return token;
     }
 
-
     @GetMapping()
     public String home(){
         return "<h1>Hello World!</h1>";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
     @GetMapping("/user")
