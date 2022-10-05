@@ -86,6 +86,11 @@ public class JavaController {
         return characterService.getAllCharacters();
     }
 
+    @GetMapping("/characters/{id}")
+    public PlayerCharacter getCharacterById(@PathVariable String id){
+        return characterService.getCharacterById(Integer.parseInt(id));
+    }
+
     @PostMapping
     public PlayerCharacter addCharacter(@RequestBody PlayerCharacter character){
         return characterService.addCharacter(character);

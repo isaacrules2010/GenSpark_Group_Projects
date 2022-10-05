@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService{
@@ -19,7 +20,16 @@ public class CharacterServiceImpl implements CharacterService{
 
     @Override
     public PlayerCharacter getCharacterById(int id) {
-        return null;
+        Optional<PlayerCharacter> c = this.characters.findById(id);
+        PlayerCharacter character = null;
+
+        if(c.isPresent()){
+            character = c.get();
+        }
+        else{
+            throw new RuntimeException("Character not found with id :: " + id);
+        }
+        return character;
     }
 
     @Override

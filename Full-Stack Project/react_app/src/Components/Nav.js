@@ -1,4 +1,5 @@
 import React from 'react'
+import '../App.css';
 
 const baseUrl = "http://localhost:3000/";
 

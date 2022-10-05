@@ -22,7 +22,7 @@ function App() {
           <Route path="/logout" element={<Logout />}></Route>
           <Route path="/newUser" element={<NewUser />}></Route>
           <Route path="/characters" element={<CharacterList />}/>
-          <Route path="/characters/*" element={<Character />}/>
+          <Route path="/characters/:id" element={<Character />}/>
         </Routes>
   );
 }
