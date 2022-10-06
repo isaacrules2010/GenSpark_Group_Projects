@@ -29,8 +29,8 @@ const sendLoginRequest = () =>{
 
         <div className='row justify-content-center pb-3'>
           <div className='col-8'>
-            <label htmlFor='email' className='form-label'>Email</label>
-            <input type="text" className="form-control" id='email' placeholder='email@email.com' required value={password} onChange={(event)=>setPassword(event.target.value)}/>
+            <label htmlFor='password' className='form-label'>Email</label>
+            <input type="password" className="form-control" id='password' placeholder='password' required value={password} onChange={(event)=>setPassword(event.target.value)}/>
           </div>
         </div>
 
