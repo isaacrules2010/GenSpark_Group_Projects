@@ -91,7 +91,7 @@ public class JavaController {
         return characterService.getCharacterById(Integer.parseInt(id));
     }
 
-    @PostMapping
+    @PostMapping("/characters")
     public PlayerCharacter addCharacter(@RequestBody PlayerCharacter character){
         return characterService.addCharacter(character);
     }

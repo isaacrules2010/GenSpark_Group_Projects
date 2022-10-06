@@ -31,7 +31,7 @@ export default class CharacterList extends Component {
             {this.state.characters.map(
                 character=>
                 <li key={character.id}>
-                    <label htmlFor='charName'>Created By: {character.user}</label>
+                    <label htmlFor='charName'>Created By: {character.user} - </label>
                     <a name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
                 </li>
             )}
