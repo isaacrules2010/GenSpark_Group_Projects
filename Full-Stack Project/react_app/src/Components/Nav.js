@@ -45,6 +45,11 @@ export default function Nav() {
                             <li><a href={baseUrl + "logout"} className="dropdown-item">Logout</a></li>
                         </ul>
                     </li>
+                    <li className="nav-item">
+                        <a href={baseUrl + "admin"} className="nav-link">
+                            Admin
+                        </a>
+                    </li>
                 </ul>
             </div>
 
