@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import CharacterList from "./RoutingPages/CharacterList";
 import Character from "./RoutingPages/Character";
 import Admin from "./RoutingPages/Admin";
+import NewCharacter from "./RoutingPages/NewCharacter";
 
 //npm install react-router-dom
 //npm install npm
@@ -24,6 +25,7 @@ function App() {
           <Route path="/newUser" element={<NewUser />}></Route>
           <Route path="/characters" element={<CharacterList />}/>
           <Route path="/characters/:id" element={<Character />}/>
+          <Route path="/characters/newCharacter" element={<NewCharacter />}/>
           <Route path="/admin" element={<Admin />}/>
         </Routes>
   );

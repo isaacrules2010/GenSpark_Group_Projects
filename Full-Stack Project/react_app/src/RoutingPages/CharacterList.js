@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Nav from '../Components/Nav';
 import Service from '../Services/Service';
 
-const baseUrl = "http://localhost:3000/";
+const baseUrl = "http://localhost:3000/characters/";
 
 export default class CharacterList extends Component {
     
@@ -31,10 +31,11 @@ export default class CharacterList extends Component {
             {this.state.characters.map(
                 character=>
                 <li key={character.id}>
-                    <label htmlFor='charName'>{character.user} - </label>
-                    <a name = 'charName' id='charName' href={baseUrl + 'characters/' +character.id}>{character.name}</a>
+                    <label htmlFor='charName'>Created By: {character.user}</label>
+                    <a name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
                 </li>
             )}
+            <li><a href={baseUrl + 'newCharacter'}>Create Character</a></li>
            </ul>
         </div>
       </form>

@@ -11,7 +11,7 @@ class Service {
         return axios.get(CHARACTERS_URL+'/'+id)
     }
 
-    addCharacters(character){
+    addCharacter(character){
         return axios.post(CHARACTERS_URL, character);
     }
 }
