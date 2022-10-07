@@ -5,8 +5,11 @@ import '../Home.css';
 
 export default function Home() {
   return (
-    <div className="home">
+    <div>
       <Nav/>
+      <div className="home">
+
+      </div>
     </div>
 
   )
