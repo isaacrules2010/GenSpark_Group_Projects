@@ -10,23 +10,20 @@ const Character = () => {
     let { id } = useParams();
     const [char, setChar] = useState({});
 
-    function getCharacter() {
-        Service.getCharacter(id)
-            .then(res=>res.data)
-            .then((data) => {setChar(data)});
-    }
-
     function getScore(num){
         return (num - 10)/2;
     }
 
     useEffect(()=>{
-        getCharacter();
-    }, [])
+        Service.getCharacter(id)
+            .then(res=>res.data)
+            .then((data) => {setChar(data)});
+    },[id])
+
   return (
     <form>
         <Nav />
-        <div class='separator'/>
+        <div className='separator'/>
         <div className='characterDisplayForm'>
             <div className='charInfo'>
                 <span id='charName'>
