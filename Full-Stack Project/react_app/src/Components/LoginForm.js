@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Buffer } from "buffer";
+import Service from '../Services/Service';
 
 //https://www.youtube.com/watch?v=rWfhwW9forg
 
 
 export default function LoginForm() {
-
-  const loginURL = "http://localhost:8080/token"
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -14,27 +12,19 @@ export default function LoginForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
 
-  const sendLoginRequest = async () => {
+  const sendLoginRequest = async() => {
 
     setBadLoginDisplay("hidden");
 
-    const res = await fetch(loginURL, {
-      method: 'post',
-      headers: new Headers({
-        'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
-      })
-    })
+    const res = await Service.getToken(username,password);
 
-    if (!res.ok) {
-      if ([401, 403].includes(res.status)) {
-        localStorage.removeItem('token');
+    console.log(res);
+    if (res==='') {
         setErrorMessage("Wrong email or password");
         setBadLoginDisplay("visible");
-      }
     } else {
-      let data = await res.text();
-      localStorage.setItem('token', 'Bearer ' + data);
-      window.location.href = "http://localhost:3000/";
+      localStorage.setItem('token', 'Bearer ' + res);
+      //window.location.href = "http://localhost:3000/";
     }
   }
 
