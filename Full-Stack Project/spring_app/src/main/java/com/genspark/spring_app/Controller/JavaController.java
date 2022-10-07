@@ -31,10 +31,10 @@ public class JavaController {
 
 
     @PostMapping("/token")
-    public List<String> token(Authentication authentication) throws JSONException {
+    public String token(Authentication authentication) throws JSONException {
 //        JSONObject token = new JSONObject();
 //        token.put("Authorization","Bearer "+ tokenService.generateToken(authentication));
-        return List.of(tokenService.generateToken(authentication));
+        return tokenService.generateToken(authentication);
     }
 
     @GetMapping()

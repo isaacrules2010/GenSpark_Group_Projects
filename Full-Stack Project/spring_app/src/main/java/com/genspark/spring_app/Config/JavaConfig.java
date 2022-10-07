@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
@@ -40,7 +41,7 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
-public class JavaConfig{
+public class JavaConfig {
 
     @Autowired
     private RsaKeyProperties rsaKeys;
@@ -55,9 +56,8 @@ public class JavaConfig{
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> {
-                    auth.antMatchers(HttpMethod.GET,"/users").permitAll();
-                    auth.antMatchers(HttpMethod.POST,"/users").permitAll();
-                    auth.antMatchers("/user").hasRole("USER");
+                    //auth.antMatchers("/characters").permitAll();
+                    auth.antMatchers("/users").permitAll();
                     auth.antMatchers("/admin").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
