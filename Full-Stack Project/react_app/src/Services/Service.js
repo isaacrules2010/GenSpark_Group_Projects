@@ -5,6 +5,13 @@ const BASE_URL = 'http://localhost:8080';
 const config = {headers: {'Authorization':localStorage.getItem('token')}};
 
 class Service {
+
+    createUser = async (username,password,email) => {
+        let res = await axios.post(BASE_URL+'/users',{username:username,password:password,email:email,active:true,roles:"ROLE_USER"});
+        console.log(res);
+    }
+
+
     getToken = async(username,password) =>{
         const res = await fetch(BASE_URL+"/token", {
             method: 'post',

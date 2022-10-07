@@ -6,26 +6,28 @@ import Service from '../Services/Service';
 
 export default function LoginForm() {
 
-  const [username, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [badLoginDisplay, setBadLoginDisplay] = useState("hidden");
   const [errorMessage, setErrorMessage] = useState("");
 
 
-  const sendLoginRequest = async() => {
+  const sendLoginRequest = async(e) => {
 
+    e.preventDefault();
+    
     setBadLoginDisplay("hidden");
 
     const res = await Service.getToken(username,password);
 
-    console.log(res);
     if (res==='') {
         setErrorMessage("Wrong email or password");
         setBadLoginDisplay("visible");
     } else {
       localStorage.setItem('token', 'Bearer ' + res);
-      //window.location.href = "http://localhost:3000/";
+      window.location.href = "http://localhost:3000/";
     }
+    return false;
   }
 
   const createNewUser = () => {
@@ -35,11 +37,11 @@ export default function LoginForm() {
   return (
     <div className='Container mt-5'>
 
-      <form className='col-md-8 mx-auto'>
+      <form className='col-md-8 mx-auto' onSubmit={(e)=> sendLoginRequest(e)}>
         <div className='row justify-content-center pb-3'>
           <div className='col-8'>
             <label htmlFor='username' className='form-label'>Username</label>
-            <input type="text" className="form-control" id='username' placeholder='Username' required value={username} onChange={(event) => setUserName(event.target.value)} />
+            <input type="text" className="form-control" id='username' placeholder='Username' required value={username} onChange={(event) => setUsername(event.target.value)} />
           </div>
         </div>
 
@@ -52,7 +54,7 @@ export default function LoginForm() {
 
         <div className='row justify-content-center pb-3'>
           <div className='col-6'>
-            <button type='button' id='submit' className='btn btn-primary' style={{ "width": "100%" }} onClick={() => sendLoginRequest()}>submit</button>
+            <button type='submit' className='btn btn-primary' style={{ "width": "100%" }}>submit</button>
           </div>
           <div className='col-2'>
             <button type='button' id='newUser' className='btn btn-success' style={{ "width": "100%" }} onClick={() => createNewUser()}>Create new user</button>

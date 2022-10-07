@@ -1,7 +1,10 @@
 import React from 'react'
+import NewUserForm from '../Components/NewUserForm'
 
 export default function NewUser() {
   return (
-    <div>NewUser</div>
+    <div>
+      <NewUserForm />
+    </div>
   )
 }
