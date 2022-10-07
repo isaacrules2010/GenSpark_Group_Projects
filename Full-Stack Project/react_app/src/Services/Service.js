@@ -19,8 +19,8 @@ class Service {
             }
           }
 
-        let data = await res.json();
-        return data[0];
+        let data = await res.text();
+        return data;
     }
 
     getCharacters() {
