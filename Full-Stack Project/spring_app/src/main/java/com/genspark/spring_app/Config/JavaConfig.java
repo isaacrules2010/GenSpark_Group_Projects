@@ -57,7 +57,7 @@ public class JavaConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests(auth -> {
                     //auth.antMatchers("/characters").permitAll();
-                    auth.antMatchers("/users").permitAll();
+                    auth.antMatchers(HttpMethod.POST,"/users").permitAll();
                     auth.antMatchers("/users/*").permitAll();
                     auth.antMatchers("/admin").hasRole("ADMIN");
                     auth.anyRequest().authenticated();

@@ -6,7 +6,7 @@ import '../Home.css';
 export default function Home() {
   return (
     <div>
-      <Nav/>
+      <Nav />
       <div className="home">
 
       </div>

@@ -1,14 +1,14 @@
 *{
+    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Gill Sans',sans-serif;
-  }
+}
+
 .home{
     background-image: url('img/DnDBG.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-
-    height: 100vh;
-
+    height:100vh;
 }
