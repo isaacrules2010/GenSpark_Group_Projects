@@ -8,16 +8,18 @@ import com.genspark.spring_app.Service.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.ElementType;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class JavaController {
-
-    private static final Logger LOG = LoggerFactory.getLogger(JavaController.class);
     @Autowired
     MyUserDetailsService userDetailsService;
 
@@ -29,11 +31,10 @@ public class JavaController {
 
 
     @PostMapping("/token")
-    public String token(Authentication authentication){
-        LOG.debug("Token requested for user: {}",authentication.getName());
-        String token = tokenService.generateToken(authentication);
-        LOG.debug("Token granted {}",token);
-        return token;
+    public List<String> token(Authentication authentication) throws JSONException {
+//        JSONObject token = new JSONObject();
+//        token.put("Authorization","Bearer "+ tokenService.generateToken(authentication));
+        return List.of(tokenService.generateToken(authentication));
     }
 
     @GetMapping()
@@ -41,10 +42,6 @@ public class JavaController {
         return "<h1>Hello World!</h1>";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
 
     @GetMapping("/user")
     public String user(){

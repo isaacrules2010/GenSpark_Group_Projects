@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
+import { Buffer } from "buffer";
+
+//https://www.youtube.com/watch?v=rWfhwW9forg
 
 
 export default function LoginForm() {
+
+const loginURL = "http://localhost:8080/token"
   
-const [userName,setUserName] = useState("");
+const [username,setUserName] = useState("");
 const [password,setPassword] = useState("");
+const [jwt,setJWT] = useState("");
 
 
-console.log(userName);
+const sendLoginRequest = async() =>{
 
-const sendLoginRequest = () =>{
-  const reqBody = {
-    username: userName,
-    password: password
-  }
+  const res = await fetch(loginURL, { 
+    method: 'post', 
+    headers: new Headers({
+        'Authorization': 'Basic '+ Buffer.from(username+":"+password).toString('base64') 
+    })
+})
 
+let data = await res.text();
+setJWT(data);
+
+console.log(jwt);
+
+window.localStorage.setItem('Authorization','Bearer '+jwt.substring(1,jwt.length-1));
 }
+
   return (
     <div className='Container mt-5'>
 
@@ -23,7 +37,7 @@ const sendLoginRequest = () =>{
         <div className='row justify-content-center pb-3'>
           <div className='col-8'>
             <label htmlFor='userName' className='form-label'>User Name</label>
-            <input type="text" className="form-control" id='userName' placeholder='User Name' required value={userName} onChange={(event)=>setUserName(event.target.value)}/>
+            <input type="text" className="form-control" id='userName' placeholder='User Name' required value={username} onChange={(event)=>setUserName(event.target.value)}/>
           </div>
         </div>
 
