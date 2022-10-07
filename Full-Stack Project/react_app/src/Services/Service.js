@@ -1,18 +1,30 @@
 import axios from "axios";
+import { Buffer } from "buffer";
 
-const CHARACTERS_URL = 'http://localhost:8080/characters';
+const BASE_URL = 'http://localhost:8080';
 
 class Service {
+
+    getToken = async(username,password) => {
+        const res = await fetch(BASE_URL+"/token", {
+            method: 'post',
+            headers: new Headers({
+              'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
+            })
+          })
+        return res;
+    }
+
     getCharacters() {
-        return axios.get(CHARACTERS_URL);
+        return axios.get(BASE_URL+"/characters");
     }
 
     getCharacter(id) {
-        return axios.get(CHARACTERS_URL+'/'+id)
+        return axios.get(BASE_URL+"/characters/"+id)
     }
 
     addCharacter(character){
-        return axios.post(CHARACTERS_URL, character);
+        return axios.post(BASE_URL+"/characters", character);
     }
 }
 

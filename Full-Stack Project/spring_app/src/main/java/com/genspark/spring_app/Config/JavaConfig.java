@@ -58,6 +58,7 @@ public class JavaConfig {
                 .authorizeRequests(auth -> {
                     //auth.antMatchers("/characters").permitAll();
                     auth.antMatchers("/users").permitAll();
+                    auth.antMatchers("/users/*").permitAll();
                     auth.antMatchers("/admin").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
