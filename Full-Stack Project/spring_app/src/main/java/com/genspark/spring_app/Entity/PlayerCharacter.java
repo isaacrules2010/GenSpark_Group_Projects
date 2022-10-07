@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class PlayerCharacter {
     @Id
     @Column(name = "char_id")
+    @GeneratedValue
     private int id;
     private String user;
     private String name;
@@ -24,19 +25,6 @@ public class PlayerCharacter {
 
     //default constructor
     public PlayerCharacter() {
-    }
-
-    public PlayerCharacter(String user, String name, String charClass) {
-        this.user = user;
-        this.name = name;
-        this.characterClass = charClass;
-
-        strength = 10;
-        constitution = 10;
-        dexterity = 10;
-        wisdom = 10;
-        intelligence = 10;
-        charisma = 10;
     }
 
     public String getUser() {
