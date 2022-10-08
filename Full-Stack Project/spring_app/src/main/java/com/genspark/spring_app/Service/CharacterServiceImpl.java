@@ -33,7 +33,15 @@ public class CharacterServiceImpl implements CharacterService{
     }
 
     @Override
-    public PlayerCharacter addCharacter(PlayerCharacter character) {
-        return this.characters.save(character);
+    public String addCharacter(PlayerCharacter character) {
+        List<PlayerCharacter> before = this.characters.findAll();
+        this.characters.save(character);
+        List<PlayerCharacter> after = this.characters.findAll();
+        if(before.size() < after.size()){
+            return "successfully created character with name: " + character.getName();
+        }
+        else{
+            return "failed";
+        }
     }
 }

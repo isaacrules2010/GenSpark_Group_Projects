@@ -6,17 +6,20 @@ const baseUrl = "http://localhost:3000/";
 
 export default function Nav() {
     const [username, setUsername] = useState("Login");
+    const [role, setRole] = useState();
 
 
     useEffect(() => {
         if(localStorage.getItem('username')!==null){
             setUsername(localStorage.getItem('username'))
+            setRole(localStorage.getItem('role'))
         }
     },[]);
 
     const logoutUser = () =>{
         localStorage.removeItem('username');
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
         window.location.href = baseUrl;
     }
 
@@ -53,10 +56,14 @@ export default function Nav() {
                         <div className="nav-link 
                         dropdown-toggle" id="navbarDropDown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                                {username}
+                                {/*username + ' - ' + role*/}
+                                {(role === 'admin' || role === 'user') ? username + ' - ' + role : username}
                         </div>
                         <ul className="dropdown-menu" aria-labelledby="Login">
-                            <li><a href={baseUrl + "login"} className="dropdown-item">Login</a></li>
+                            <li><a href={baseUrl + "login"} className="dropdown-item">
+                                {role === 'admin' ? 'Login as User' : 'Login'}
+                                </a>
+                            </li>
                             <li><a href={baseUrl + "newUser"} className="dropdown-item">Create New Account</a></li>
                             <li><div className="dropdown-item" onClick={()=>logoutUser()}>Logout</div></li>
                         </ul>

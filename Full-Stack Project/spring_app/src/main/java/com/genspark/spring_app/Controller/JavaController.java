@@ -89,7 +89,7 @@ public class JavaController {
     }
 
     @PostMapping("/characters")
-    public PlayerCharacter addCharacter(@RequestBody PlayerCharacter character){
+    public String addCharacter(@RequestBody PlayerCharacter character){
         return characterService.addCharacter(character);
     }
 }

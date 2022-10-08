@@ -1,6 +1,5 @@
 import Home from "./RoutingPages/Home";
 import Login from "./RoutingPages/Login";
-import Logout from "./RoutingPages/Logout";
 import NewUser from "./RoutingPages/NewUser";
 import { Route, Routes } from "react-router-dom";
 import CharacterList from "./RoutingPages/CharacterList";
@@ -22,7 +21,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/logout" element={<Logout />}></Route>
           <Route path="/newUser" element={<NewUser />}></Route>
           <Route path="/characters" element={<CharacterList />}/>
           <Route path="/characters/:id" element={<Character />}/>
