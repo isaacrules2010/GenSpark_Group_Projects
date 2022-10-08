@@ -18,7 +18,8 @@ class Service {
         return '';
       }
     }
-    return "Successful login";
+    const token = await this.getToken(adminName,password);
+    return token;
   }
 
   createUser = async (username, password, email) => {
