@@ -64,7 +64,7 @@ public class JavaController {
     }
 
     @PostMapping("/users")
-    public User addUser(@RequestBody User user){
+    public String addUser(@RequestBody User user){
         return this.userDetailsService.addUser(user);
     }
 

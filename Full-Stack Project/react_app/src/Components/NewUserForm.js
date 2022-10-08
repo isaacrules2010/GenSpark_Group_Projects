@@ -33,7 +33,6 @@ export default function NewUserForm() {
 
     const newUserRequest = async(e) =>{
         e.preventDefault();
-        console.log("I am in the method");
         const isValid = await validate();
         if(isValid){
             Service.createUser(username,password1,email);

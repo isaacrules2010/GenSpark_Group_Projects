@@ -37,10 +37,16 @@ public class MyUserDetailsServiceImp implements MyUserDetailsService {
     }
 
     @Override
-    public User addUser(User user) {
-        String passwordEncode = passwordEncoder.encode(user.getPassword());
-        user.setPassword(passwordEncode);
-        return userDao.save(user);
+    public String addUser(User user) {
+        Optional<User> innerUser = userDao.findByUsername(user.getUsername());
+        if(innerUser.isEmpty()) {
+            String passwordEncode = passwordEncoder.encode(user.getPassword());
+            user.setPassword(passwordEncode);
+            userDao.save(user);
+        }else{
+            return "User is already in the system";
+        }
+        return "successful new user";
     }
 
     @Override
@@ -63,9 +69,9 @@ public class MyUserDetailsServiceImp implements MyUserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userDao.findByUsername(userName)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDao.findByUsername(username)
                 .map(MyUserDetails::new)
-                .orElseThrow(()->new UsernameNotFoundException("Username not found: " + userName));
+                .orElseThrow(()->new UsernameNotFoundException("Username not found: " + username));
     }
 }

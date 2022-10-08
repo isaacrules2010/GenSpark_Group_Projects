@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface MyUserDetailsService extends UserDetailsService {
     List<User> findAllUsers();
     User getUserById(int userId);
-    User addUser(User user);
+    String addUser(User user);
     User updateUser(User user);
     String deleteUser(int userId);
 
