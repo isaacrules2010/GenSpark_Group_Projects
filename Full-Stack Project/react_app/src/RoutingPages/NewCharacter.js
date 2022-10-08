@@ -5,7 +5,7 @@ import Service from '../Services/Service';
 export default function NewCharacter() {
 
   const [char, setCharacter] = useState({
-    user: "ADMIN",
+    user: "",
     name: "",
     characterClass: "",
     strength: "",
@@ -26,7 +26,7 @@ export default function NewCharacter() {
     <form onSubmit={submitHandler}>
       <Nav />
       <div className='separator'/>
-      <div>New Character</div>
+      <h1>New Character</h1>
       <div className='infoInput' id='keyInfo'>
         <label htmlFor='name'>Name:</label>
         <input type='text' name='name' id='name' onChange={e=>setCharacter({...char, name: e.target.value})} value={char.name}/>
