@@ -26,6 +26,7 @@ export default function LoginForm() {
     } else {
       localStorage.setItem('username',username);
       localStorage.setItem('token', 'Bearer ' + res);
+      localStorage.setItem('role','user');
       window.location.href = "http://localhost:3000/";
     }
     return false;

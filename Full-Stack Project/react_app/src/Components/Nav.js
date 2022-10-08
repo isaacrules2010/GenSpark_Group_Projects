@@ -17,6 +17,7 @@ export default function Nav() {
     const logoutUser = () =>{
         localStorage.removeItem('username');
         localStorage.removeItem('token');
+        localStorage.removeItem('role');
         window.location.href = baseUrl;
     }
 
