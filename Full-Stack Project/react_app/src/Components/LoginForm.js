@@ -21,7 +21,7 @@ export default function LoginForm() {
     const res = await Service.getToken(username,password);
 
     if (res==='') {
-        setErrorMessage("Wrong email or password");
+        setErrorMessage("Wrong username or password");
         setBadLoginDisplay("visible");
     } else {
       localStorage.setItem('token', 'Bearer ' + res);

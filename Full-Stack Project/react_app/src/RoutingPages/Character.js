@@ -11,7 +11,11 @@ const Character = () => {
     const [char, setChar] = useState({});
 
     function getScore(num){
-        return (num - 10)/2;
+        var score = Math.floor((num - 10)/2);
+        if(score >= 0){
+            score = '+' + score;
+        }
+        return score;
     }
 
     useEffect(()=>{
