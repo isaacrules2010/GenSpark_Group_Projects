@@ -27,8 +27,11 @@ function App() {
           <Route path="/characters" element={<CharacterList />}/>
           <Route path="/characters/:id" element={<Character />}/>
           <Route path="/characters/newCharacter" element={<NewCharacter />}/>
-          <Route path="/admin" element={<Admin />}/>
-          <Route path="/admin/login" element={<AdminLoginForm />}/>
+          <Route path="/admin" element={localStorage.getItem('role')==='admin' ?(
+          <Admin />
+          ):(
+            <AdminLoginForm />
+          )}/>
         </Routes>
   );
 }

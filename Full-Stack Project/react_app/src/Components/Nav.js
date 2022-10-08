@@ -62,7 +62,7 @@ export default function Nav() {
                         </ul>
                     </li>
                     <li className="nav-item">
-                        <a href={baseUrl + "admin/login"} className="nav-link">
+                        <a href={baseUrl + "admin"} className="nav-link">
                             Admin
                         </a>
                     </li>
