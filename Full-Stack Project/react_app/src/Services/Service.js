@@ -7,8 +7,9 @@ const config = {headers: {'Authorization':localStorage.getItem('token')}};
 class Service {
 
     createUser = async (username,password,email) => {
-        let res = await axios.post(BASE_URL+'/users',{username:username,password:password,email:email,active:true,roles:"ROLE_USER"});
-        console.log(res);
+        let data = await axios.post(BASE_URL+'/users',{username:username,password:password,email:email,active:true,roles:"ROLE_USER"}).then(data=>data.data);
+        console.log(data)
+        return JSON.stringify(data);
     }
 
 

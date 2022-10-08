@@ -6,26 +6,19 @@ export default function NewUserForm() {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
-    const [badRequestDisplay, setBadRequestDisplay] = useState("hidden");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [messageColor,setMessageColor] = useState("danger");
+    const [messageToUserDisplay, setMessageToUserDisplay] = useState("hidden");
+    const [messageToUser, setMessageToUser] = useState("");
     const [loginButtonDisplay,setLoginButtonDisplay] = useState("hidden");
 
     const validate = async() =>{
-        setBadRequestDisplay("hidden");
-        setErrorMessage("");
+        setMessageToUserDisplay("hidden");
+        setMessageToUser("");
         setLoginButtonDisplay("hidden");
 
         if(password1!==password2){
-            setErrorMessage("Passwords do NOT match");
-            setBadRequestDisplay("visible");
-            return false;
-        }
-
-        const res = await Service.getToken(username,password1);
-        if(res!==''){
-            setErrorMessage("Login username and password has already been used");
-            setBadRequestDisplay("visible");
-            setLoginButtonDisplay('visible');
+            setMessageToUser("Passwords do NOT match");
+            setMessageToUserDisplay("visible");
             return false;
         }
         return true;
@@ -33,11 +26,27 @@ export default function NewUserForm() {
 
     const newUserRequest = async(e) =>{
         e.preventDefault();
+        setMessageColor("danger");
         const isValid = await validate();
         if(isValid){
-            Service.createUser(username,password1,email);
+           const data = await Service.createUser(username,password1,email);
+           if(data.includes("success")){
+               setMessageColor("success");
+           }else{
+                setMessageColor("danger");
+           }
+           setMessageToUser(data);
+           setMessageToUserDisplay("visible"); 
+           setLoginButtonDisplay("visible");
+           clear();
         }
-        setLoginButtonDisplay("visible");
+    }
+
+    const clear = () =>{
+        setUsername("");
+        setPassword1("");
+        setPassword2("");
+        setEmail("");
     }
 
     const gotToLogin = () =>{
@@ -86,7 +95,7 @@ export default function NewUserForm() {
 
                     <div className='row justify-content-center'>
                         <div className='col-8'>
-                            <div role="alert" className='alert alert-danger alertMessage text-center' style={{ visibility: badRequestDisplay }}>{errorMessage}</div>
+                            <div role="alert" className={'alert alert-'+messageColor+ ' alertMessage text-center'} style={{ visibility: messageToUserDisplay }}>{messageToUser}</div>
                         </div>
                     </div>
 
