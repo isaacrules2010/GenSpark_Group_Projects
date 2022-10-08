@@ -59,11 +59,14 @@ export default function Creator(){
                                     <i className="bi bi-person-fill"></i>
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-end">
+                                    <li><a className="dropdown-item" href={baseUrl}>Home</a>
+                                    </li>
                                     <li><a className="dropdown-item" href={baseUrl + "login"}>Login</a></li>
                                     <li><a className="dropdown-item" href={baseUrl + "logout"}>Logout</a></li>
                                     <li>
                                         <a className="dropdown-item" href={baseUrl + "newUser"}>Create New User</a>
                                     </li>
+                                    
                                 </ul>
                             </li>
                         </ul>

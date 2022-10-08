@@ -6,9 +6,31 @@
     font-family: 'Gill Sans',sans-serif;
 }
 
-.home{
+.welcome{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     background-image: url('img/DnDBG.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height:100vh;
+    z-index: 0;
 }
+.welcome h1{
+    font-size: 50px;
+    color:aliceblue;
+    text-align: center;
+}
+.welcome h4{
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 30vh;
+    text-align: center;
+    color:aliceblue;
+
+}
+

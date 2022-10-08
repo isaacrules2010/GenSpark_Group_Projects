@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import Nav from '../Components/Nav';
 import Service from '../Services/Service';
+import '../NewChar.css';
+
 
 export default function NewCharacter() {
 
@@ -23,7 +25,7 @@ export default function NewCharacter() {
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form className='charform' onSubmit={submitHandler}>
       <Nav />
       <div className='separator'/>
       <h1>New Character</h1>
@@ -59,8 +61,12 @@ export default function NewCharacter() {
         <label htmlFor='charisma'>CHA:</label>
         <input type='text' name='charisma' id='charisma' onChange={e=>setCharacter({...char, charisma: e.target.value})} value={char.charisma}/>
       </div>
-      <input type='submit' value='CREATE'/>
+      <div className='submit'>
+        <input type='submit' value='CREATE'/>
+        </div>
+      <div className='newuser'></div>
     </form>
+
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from '../Components/Nav';
 import Service from '../Services/Service';
+import '../CharList.css';
 
 const baseUrl = "http://localhost:3000/characters/";
 
@@ -23,19 +24,20 @@ export default class CharacterList extends Component {
 
   render() {
     return (
-      <form>
+      <form className='charlist'>
         <Nav />
         <div className='separator'/>
         <div>
-           <ul title='Characters'>
+           <ul className='title' title='Characters'>
+            <h1>Character List</h1>
             {this.state.characters.map(
                 character=>
                 <li key={character.id}>
                     <label htmlFor='charName'>Created By: {character.user} - </label>
-                    <a name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
+                    <a className='link' name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
                 </li>
             )}
-            <li><a href={baseUrl + 'newCharacter'}>Create Character</a></li>
+            <li><a className='link' href={baseUrl + 'newCharacter'}>Create Character</a></li>
            </ul>
         </div>
       </form>

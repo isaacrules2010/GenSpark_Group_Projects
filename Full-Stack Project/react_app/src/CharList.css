@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    font-display: white;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans',sans-serif;
+    
+
+}
+
+.charlist{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-image: url('img/CreateChar.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:100vh;
+    z-index: 0;
+}
+.charlist .title{
+    font-size: 15px;
+    color: white;
+}
+.charlist label{
+    display: inline;
+    color:white;
+    font-size: 15px;
+    margin-bottom: 5px;
+    transition: 0.4s;
+}
+.charlist .link{
+    color: lightblue;
+}
