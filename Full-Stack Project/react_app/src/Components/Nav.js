@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react';
 import '../App.css';
+import { useEffect } from 'react';
 
 const baseUrl = "http://localhost:3000/";
 
 export default function Nav() {
+    const [username, setUsername] = useState("Login");
+
+
+    useEffect(() => {
+        if(localStorage.getItem('username')!==null){
+            setUsername(localStorage.getItem('username'))
+        }
+    },[]);
+
+    const logoutUser = () =>{
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+        window.location.href = baseUrl;
+    }
+
   return (
     <nav className='navbar navbar-dark bg-dark navbar-expand-sm'>
         <div className="container">
@@ -37,12 +53,12 @@ export default function Nav() {
                         <div className="nav-link 
                         dropdown-toggle" id="navbarDropDown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Login
+                                {username}
                         </div>
                         <ul className="dropdown-menu" aria-labelledby="Login">
                             <li><a href={baseUrl + "login"} className="dropdown-item">Login</a></li>
                             <li><a href={baseUrl + "newUser"} className="dropdown-item">Create New Account</a></li>
-                            <li><a href={baseUrl + "logout"} className="dropdown-item">Logout</a></li>
+                            <li><div className="dropdown-item" onClick={()=>logoutUser()}>Logout</div></li>
                         </ul>
                     </li>
                     <li className="nav-item">
