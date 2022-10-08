@@ -7,7 +7,7 @@ const config = { headers: { 'Authorization': localStorage.getItem('token') } };
 class Service {
 
   loginAdmin = async (adminName, password) => {
-    const res = await fetch(BASE_URL + "/token", {
+    const res = await fetch(BASE_URL + "/admin", {
       method: 'post',
       headers: new Headers({
         'Authorization': 'Basic ' + Buffer.from(adminName + ":" + password).toString('base64')
@@ -18,7 +18,7 @@ class Service {
         return '';
       }
     }
-    return "Successful Login Admin";
+    return "Successful login";
   }
 
   createUser = async (username, password, email) => {

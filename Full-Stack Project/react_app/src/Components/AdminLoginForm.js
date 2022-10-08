@@ -15,7 +15,7 @@ export default function AdminLoginForm() {
 
         setBadLoginDisplay("hidden");
 
-        const res = await Service.loginAdmin;
+        const res = await Service.loginAdmin(adminName,password);
 
         if (res === '') {
             setErrorMessage("Wrong Admin Name or password");
