@@ -35,7 +35,12 @@ export default class CharacterList extends Component {
                     <a name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
                 </li>
             )}
-            <li><a href={baseUrl + 'newCharacter'}>Create Character</a></li>
+            {(localStorage.getItem('username') !== null && localStorage.getItem('role') === 'user') &&
+              <li><a href={baseUrl + 'newCharacter'}>Create Character</a></li>
+            }
+            {localStorage.getItem('role') === 'admin' && 
+              <li>Please log in as a user to create a new character</li>
+            }
            </ul>
         </div>
       </form>
