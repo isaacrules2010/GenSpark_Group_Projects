@@ -48,7 +48,7 @@ public class JavaController {
         return "<h1>Hello User<h2>";
     }
 
-    @GetMapping("/admin")
+    @PostMapping("/admin")
     public String admin(){
         return "<h1>Hello Admin!</h1>";
     }

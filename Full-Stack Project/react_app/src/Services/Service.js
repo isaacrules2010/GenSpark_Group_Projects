@@ -2,46 +2,61 @@ import axios from "axios";
 import { Buffer } from "buffer";
 
 const BASE_URL = 'http://localhost:8080';
-const config = {headers: {'Authorization':localStorage.getItem('token')}};
+const config = { headers: { 'Authorization': localStorage.getItem('token') } };
 
 class Service {
 
-    createUser = async (username,password,email) => {
-        let data = await axios.post(BASE_URL+'/users',{username:username,password:password,email:email,active:true,roles:"ROLE_USER"}).then(data=>data.data);
-        console.log(data)
-        return JSON.stringify(data);
+  loginAdmin = async (adminName, password) => {
+    const res = await fetch(BASE_URL + "/admin", {
+      method: 'post',
+      headers: new Headers({
+        'Authorization': 'Basic ' + Buffer.from(adminName + ":" + password).toString('base64')
+      })
+    })
+    if (!res.ok) {
+      if ([401, 403].includes(res.status)) {
+        return '';
+      }
+    }
+    return "Successful login";
+  }
+
+  createUser = async (username, password, email) => {
+    let data = await axios.post(BASE_URL + '/users', { username: username, password: password, email: email, active: true, roles: "ROLE_USER" }).then(data => data.data);
+    console.log(data)
+    return JSON.stringify(data);
+  }
+
+
+  getToken = async (username, password) => {
+    const res = await fetch(BASE_URL + "/token", {
+      method: 'post',
+      headers: new Headers({
+        'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
+      })
+    })
+    if (!res.ok) {
+      if ([401, 403].includes(res.status)) {
+        localStorage.removeItem('token');
+        return '';
+      }
     }
 
+    let data = await res.text();
+    return data;
+  }
 
-    getToken = async(username,password) =>{
-        const res = await fetch(BASE_URL+"/token", {
-            method: 'post',
-            headers: new Headers({
-              'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
-            })
-          })
-          if (!res.ok) {
-            if ([401, 403].includes(res.status)) {
-              localStorage.removeItem('token');
-              return '';
-            }
-          }
+  getCharacters() {
+    return axios.get(BASE_URL + '/characters', config);
+  }
 
-        let data = await res.text();
-        return data;
-    }
+  getCharacter(id) {
+    return axios.get(BASE_URL + '/characters/' + id, config)
+  }
 
-    getCharacters() {
-        return axios.get(BASE_URL+'/characters', config);
-    }
-
-    getCharacter(id) {
-        return axios.get(BASE_URL+'/characters/'+id, config)
-    }
-
-    addCharacter(character){
-        return axios.post(BASE_URL+'/characters', character, config);
-    }
+  addCharacter(character) {
+    return axios.post(BASE_URL + '/characters', character, config);
+  }
 }
 
 export default new Service();
