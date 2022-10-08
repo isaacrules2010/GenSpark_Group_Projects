@@ -22,6 +22,7 @@ export default function AdminLoginForm() {
             setBadLoginDisplay("visible");
         } else {
             localStorage.setItem('role','admin');
+            localStorage.setItem('token', 'Bearer ' + res);
             window.location.href = "http://localhost:3000/admin";
         }
         return false;
