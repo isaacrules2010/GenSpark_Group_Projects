@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginForm from "../Components/LoginForm";
 import '../Style.css';
 const baseUrl = "http://localhost:3000/";
 
