@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import '../App.css';
 import { useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 const baseUrl = "http://localhost:3000/";
 
 export default function Nav() {
     const [username, setUsername] = useState("Login");
-    const [role, setRole] = useState();
+    const [role, setRole] = useState([]);
+
 
 
     useEffect(() => {
-        if(localStorage.getItem('username')!==null){
-            setUsername(localStorage.getItem('username'))
-            setRole(localStorage.getItem('role'))
+        if(localStorage.getItem('token')!==null){
+            setUsername(jwt_decode(localStorage.getItem('token').replace('Bearer ','')).sub);
+            setRole(jwt_decode(localStorage.getItem('token').replace('Bearer ','')).scope);
         }
-    },[]);
+    },[role]);
 
     const logoutUser = () =>{
-        localStorage.removeItem('username');
         localStorage.removeItem('token');
         window.location.href = baseUrl;
     }
@@ -56,11 +57,11 @@ export default function Nav() {
                         dropdown-toggle" id="navbarDropDown" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                                 {/*username + ' - ' + role*/}
-                                {(role === 'admin' || role === 'user') ? username + ' - ' + role : username}
+                                {(role.includes('ROLE_ADMIN')) ? username + ' - admin' : ((role.includes('ROLE_USER')) ? username + ' - user' :username)}
                         </div>
                         <ul className="dropdown-menu" aria-labelledby="Login">
                             <li><a href={baseUrl + "login"} className="dropdown-item">
-                                {role === 'admin' ? 'Login as User' : 'Login'}
+                                {role.includes('ROLE_ADMIN') ? 'Login as User' : 'Login'}
                                 </a>
                             </li>
                             <li><a href={baseUrl + "newUser"} className="dropdown-item">Create New Account</a></li>
