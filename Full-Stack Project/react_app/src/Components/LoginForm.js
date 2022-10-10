@@ -24,9 +24,7 @@ export default function LoginForm() {
         setErrorMessage("Wrong username or password");
         setBadLoginDisplay("visible");
     } else {
-      localStorage.setItem('username',username);
       localStorage.setItem('token', 'Bearer ' + res);
-      localStorage.setItem('role','user');
       window.location.href = "http://localhost:3000/";
     }
     return false;
