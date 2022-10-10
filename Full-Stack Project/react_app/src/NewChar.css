@@ -12,19 +12,38 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url('img/CreateChar.jpg');
+    background-image: url('img/DnD.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height:100vh;
-    z-index: 0;
-    color:white;
     
+    color:white;
+    text-align: center;
+    font-size: 25px;
 }
 
+.charform form{
+    display: inline-block;
+    text-align: center;
+}
+.infoInput{
+    text-align: center;
+    display:block;
+    align-items: center;
+    font-size: 25px;
+}
+.charform h1{
+    text-align: center;
+}
+.infoInput input{
+    
+    text-align: center;
+    color: white;
+}
 .charform label{
     display: block;
     color:white;
-    font-size: 12px;
+    font-size: 18px;
     margin-bottom: 5px;
     transition: 0.4s;
 }

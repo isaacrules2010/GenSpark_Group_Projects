@@ -55,7 +55,8 @@ export default function NewUserForm() {
 
 
     return (
-        <div>
+        <div className='newuser'>
+            <h1>User Creation</h1>
             <div className='Container mt-5'>
                 <form className='col-md-8 mx-auto' onSubmit={(e) => newUserRequest(e)}>
 

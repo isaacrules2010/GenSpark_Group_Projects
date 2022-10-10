@@ -1,14 +1,13 @@
 *{
     margin: 0;
-    font-display: white;
+    
     padding: 0;
     box-sizing: border-box;
     font-family: 'Gill Sans',sans-serif;
-    
 
 }
 
-.charlist{
+.login{
     display: block;
     align-items: center;
     justify-content: center;
@@ -19,17 +18,22 @@
     height:100vh;
     z-index: 0;
 }
-.charlist .title{
-    font-size: 15px;
-    color: white;
-}
-.charlist label{
-    display: inline;
+
+.col-8 label{
     color:white;
-    font-size: 15px;
-    margin-bottom: 5px;
-    transition: 0.4s;
 }
-.charlist .link{
-    color: lightblue;
+.col-8:focus{
+    background: transparent;
+}
+
+.col-md-8 input{
+    background-color: transparent;
+    color:white;
+}
+.col-md-8:active{
+    background: transparent;
+}
+.col-md-8 input::placeholder{
+    color:white;
+    background-color: transparent;
 }

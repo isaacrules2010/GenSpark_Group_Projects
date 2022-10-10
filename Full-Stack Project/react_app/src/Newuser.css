@@ -1,14 +1,13 @@
 *{
+    
     margin: 0;
-    font-display: white;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Gill Sans',sans-serif;
-    
-
 }
 
-.charlist{
+
+.newuser{
     display: block;
     align-items: center;
     justify-content: center;
@@ -17,19 +16,23 @@
     background-size: cover;
     background-repeat: no-repeat;
     height:100vh;
-    z-index: 0;
-}
-.charlist .title{
-    font-size: 15px;
-    color: white;
-}
-.charlist label{
-    display: inline;
     color:white;
-    font-size: 15px;
+}
+.newuser input{  
+    display: block;
+    width: 100%;
+    padding: 5px 5px;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+.newuser label{
+    display: block;
+    color:white;
+    font-size: 12px;
     margin-bottom: 5px;
     transition: 0.4s;
 }
-.charlist .link{
-    color: lightblue;
+.newuser h1{
+    text-align: center;
 }

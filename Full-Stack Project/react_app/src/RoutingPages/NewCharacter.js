@@ -72,7 +72,7 @@ export default function NewCharacter() {
       <div className='submit'>
         <input type='submit' value='CREATE'/>
         </div>
-      <div className='newuser'></div>
+      
     </form>
 
   )
