@@ -35,6 +35,7 @@ export default function NewCharacter() {
   return (
     <form className='charform' onSubmit={submitHandler}>
       <Nav />
+      <div className='classDiv'>
       <div className='separator'/>
       <h1>New Character</h1>
       <div className='infoInput' id='keyInfo'>
@@ -72,6 +73,7 @@ export default function NewCharacter() {
       <div className='submit'>
         <input type='submit' value='CREATE'/>
         </div>
+      </div>
       
     </form>
 
