@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Nav from '../Components/Nav';
 import Service from '../Services/Service';
 import '../CharList.css';
+import jwt_decode from 'jwt-decode';
 
 const baseUrl = "http://localhost:3000/characters/";
 
@@ -11,14 +12,20 @@ export default class CharacterList extends Component {
     constructor(){
         super();
         this.state = {
-            characters:[]
+            characters:[],
+            user:""
         }
     }
     
     //runs as soon as the component is loaded
     componentDidMount(){
-        Service.getCharacters().then(res => {
-            this.setState({characters: res.data})
+      let username = "";
+      if(localStorage.getItem('token')!== null){
+        username = String(jwt_decode(localStorage.getItem('token').replace('Bearer ','')).sub);
+      }
+      //console.log(username);
+        Service.getCharactersByUser(username).then(res => {
+            this.setState({characters: res.data, user: username})
         });
     }
 
@@ -37,8 +44,15 @@ export default class CharacterList extends Component {
                     <a className='link' name = 'charName' id='charName' href={baseUrl + character.id}>{character.name}</a>
                 </li>
             )}
-            {(localStorage.getItem('username') !== null) &&
+            {(this.state.user !== "") &&
               <li><a href={baseUrl + 'newCharacter'}>Create Character</a></li>
+            }
+            {(this.state.user === "") && 
+              <div>
+                You must be logged in to view character list
+                <div className='separator'/>
+                <a href={'http://localhost:3000/login'}>Login</a>
+              </div>
             }
            </ul>
         </div>

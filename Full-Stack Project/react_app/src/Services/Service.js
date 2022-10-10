@@ -51,6 +51,10 @@ class Service {
     return axios.get(BASE_URL + '/characters', config);
   }
 
+  getCharactersByUser(user) {
+    return axios.get(BASE_URL + '/characters/user=' + user, config);
+  }
+
   getCharacter(id) {
     return axios.get(BASE_URL + '/characters/' + id, config)
   }

@@ -88,6 +88,11 @@ public class JavaController {
         return characterService.getCharacterById(Integer.parseInt(id));
     }
 
+    @GetMapping("/characters/user={user}")
+    public List<PlayerCharacter> getCharactersByUser(@PathVariable String user){
+        return characterService.getCharactersByUser(user);
+    }
+
     @PostMapping("/characters")
     public String addCharacter(@RequestBody PlayerCharacter character){
         return characterService.addCharacter(character);

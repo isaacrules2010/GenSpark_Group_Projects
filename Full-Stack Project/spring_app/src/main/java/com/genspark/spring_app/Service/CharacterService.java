@@ -8,4 +8,5 @@ public interface CharacterService{
     List<PlayerCharacter> getAllCharacters();
     PlayerCharacter getCharacterById(int id);
     String addCharacter(PlayerCharacter character);
+    List<PlayerCharacter> getCharactersByUser(String user);
 }

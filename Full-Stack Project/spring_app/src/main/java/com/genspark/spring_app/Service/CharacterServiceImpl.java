@@ -44,4 +44,9 @@ public class CharacterServiceImpl implements CharacterService{
             return "failed";
         }
     }
+
+    @Override
+    public List<PlayerCharacter> getCharactersByUser(String user) {
+        return characters.findByUser(user);
+    }
 }
