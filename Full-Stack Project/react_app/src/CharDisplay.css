@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    font-display: white;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans',sans-serif;
+}
+
+.charInfo{
+    display: block;
+    position: relative;
+    background-image: linear-gradient(to top, rgb(241, 217, 150), white );
+    color: black;
+    margin:0px 33%;
+    padding: 10px 50px;
+    border: 1px solid black;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#charName{
+    border-bottom: solid black 1px;
+}
+
+#charClass{
+    display: inline-block;
+    margin: 15px;
+}
+
+#charUser{
+    display: inline-block;
+    margin: 15px;
+}
+
+.characterDisplayForm{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-image: url('img/DnD.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    color: black;
+    text-align: center;
+    font-size: 25px;
+}
+
+.statDisplay{
+    display: inline-block;
+    background-image: linear-gradient(to top, rgb(241, 217, 150), white );
+    color: black;
+    margin: 10px;
+    padding: 10px 50px;
+    border: 1px solid black;
+    border-radius: 8px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.statDisplay h3{
+    border-bottom: solid black 5px;
+}
+
+.modifier{
+    background-color: white;
+    border: solid black 1px 
+}
