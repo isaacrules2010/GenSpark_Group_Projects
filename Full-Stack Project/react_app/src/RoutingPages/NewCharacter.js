@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Nav from '../Components/Nav';
 import Service from '../Services/Service';
 import '../NewChar.css';
+import jwt_decode from 'jwt-decode';
 
 
 export default function NewCharacter() {
@@ -28,7 +29,7 @@ export default function NewCharacter() {
   }
 
   useEffect(() => {
-    setCharacter({...char, user: localStorage.getItem('username')});
+    setCharacter({...char, user: String(jwt_decode(localStorage.getItem('token').replace('Bearer ','')).sub)});
     //eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
