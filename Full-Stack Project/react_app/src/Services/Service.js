@@ -58,6 +58,10 @@ class Service {
   addCharacter(character) {
     return axios.post(BASE_URL + '/characters', character, config);
   }
+
+  getUsers() {
+    return axios.get(BASE_URL + '/users', config);
+  }
 }
 
 export default new Service();

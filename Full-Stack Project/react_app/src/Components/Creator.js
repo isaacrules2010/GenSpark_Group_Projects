@@ -1,9 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
+import Service from '../Services/Service';
 import '../Style.css';
 const baseUrl = "http://localhost:3000/";
 
 
 export default function Creator(){
+
+    const [characters, setCharacters] = useState({
+        list: []
+    });
+
+    const [users, setUsers] = useState({
+        list: []
+    });
+
+    const getUsers = async () => {
+        let res = await Service.getUsers();
+        //console.log(res);
+        // setUsers(...)
+        setUsers({list: res.data})
+    }
+
+    const getCharacters = async () => {
+        // setCharacters(await Service.getCharacters());
+        // console.log(characters);
+        let res = await Service.getCharacters();
+        setCharacters({list: res.data});
+    }
+
+    useEffect(() => {
+        getUsers();
+        getCharacters();
+    }, []);
+
     return(
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -135,18 +164,33 @@ export default function Creator(){
                                                 <tr>
                                                     <th>User Id</th>
                                                     <th>Username</th>
-                                                    <th>Password</th>
+                                                    {/* <th>Password</th> */}
                                                     <th>Email</th>
                                                     <th>Active</th>
                                                     <th>Role</th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                {/* {console.log(users.list)} */}
+                                                {                                            
+                                                    users.list.map(
+                                                        user =>
+                                                        <tr key={user.id}>
+                                                            <td>{user.id}</td>
+                                                            <td>{user.username}</td>
+                                                            <td>{user.email}</td>
+                                                            <td>{String(user.active)}</td>
+                                                            <td>{user.roles}</td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            </tbody>
 
                                             <tfoot>
                                                 <tr>
                                                     <th>User Id</th>
                                                     <th>Username</th>
-                                                    <th>Password</th>
+                                                    {/* <th>Password</th> */}
                                                     <th>Email</th>
                                                     <th>Active</th>
                                                     <th>Role</th>
@@ -187,7 +231,19 @@ export default function Creator(){
                                                     
                                                 </tr>
                                             </thead>
-
+                                            <tbody>
+                                                {
+                                                    characters.list.map(
+                                                        character =>
+                                                        <tr key={character.id}>
+                                                            <td><a href = {baseUrl + 'characters/' + character.id}>{character.id}</a></td>
+                                                            <td>{character.user}</td>
+                                                            <td>{character.name}</td>
+                                                            <td>{character.characterClass}</td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <th>Character Id</th>
@@ -204,7 +260,7 @@ export default function Creator(){
                     </div>
                 </div>
             </main>
-            <main className="mt-5 pt-3">
+            {/* <main className="mt-5 pt-3">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-12">
@@ -252,7 +308,7 @@ export default function Creator(){
                         </div>
                     </div>
                 </div>
-            </main>
+            </main> */}
             <script src="./js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
             <script src="./js/jquery-3.5.1.js"></script>
