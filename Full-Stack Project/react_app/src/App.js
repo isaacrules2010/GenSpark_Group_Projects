@@ -6,7 +6,7 @@ import CharacterList from "./RoutingPages/CharacterList";
 import Character from "./RoutingPages/Character";
 import Admin from "./RoutingPages/Admin";
 import NewCharacter from "./RoutingPages/NewCharacter";
-import AdminLoginForm from "./Components/AdminLoginForm";
+import AdminLogin from "./RoutingPages/LoginAdmin";
 import jwt_decode from 'jwt-decode';
 import { useState,useEffect} from "react";
 
@@ -36,7 +36,7 @@ function App() {
           <Route path="/admin" element={role.includes('ROLE_ADMIN') ?(
           <Admin />
           ):(
-            <AdminLoginForm />
+            <AdminLogin />
           )}/>
         </Routes>
   );

@@ -29,8 +29,8 @@ export default function AdminLoginForm() {
     }
 
     return (
-        <div>
-            <div className='Container mt-5'>
+        <div className='bg-secondary' style={{height:'100vh'}}>
+            <div className='Container pt-5'>
 
                 <form className='col-md-8 mx-auto' onSubmit={(e) => loginAdmin(e)}>
                     <div className='row justify-content-center pb-3'>
